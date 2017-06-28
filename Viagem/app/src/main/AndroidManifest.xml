@@ -1,0 +1,23 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+
+    package="br.com.filipe.viagem">
+
+    <application
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.NoTitleBar">
+
+        <activity android:name=".activity.BoaViagemActivity" android:label="@string/app_name">
+            <intent-filter><action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.DashboardActivity"/>
+        <activity android:name=".activity.NovaViagemActivity"/>
+        <activity android:name=".activity.NovoGastoActivity"/>
+        <activity android:name=".activity.ViagemListActivity"/>
+        <activity android:name=".activity.GastoListActivity"/>
+        <activity android:name=".activity.ConfiguracoesActivity"/>
+    </application>
+
+</manifest>

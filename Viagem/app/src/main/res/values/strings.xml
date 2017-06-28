@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">Boa Viagem</string>
+    <string name="usuario">Usuário</string>
+    <string name="senha">Senha</string>
+    <string name="entrar">Entrar</string>
+    <string name="usuarioInvalido">Usuário/Senha incorretos</string>
+    <string name="novo_gasto">Novo Gasto</string>
+    <string name="nova_viagem">Nova Viagem</string>
+    <string name="minhas_viagens">Minhas Viagens</string>
+    <string name="configuracoes">Configurações</string>
+    <string name="destino">Destino</string>
+    <string name="tipo_viagem">Tipo da Viagem</string>
+    <string name="lazer">Lazer</string>
+    <string name="negocios">Negócios</string>
+    <string name="data_chegada">Data de Chegada</string>
+    <string name="data_saida">Data de Saída</string>
+    <string name="selecione">Selecione</string>
+    <string name="orcamento">Orçamento</string>
+    <string name="qtdpessoas">Quantidade de Pessoas</string>
+    <string name="salvar">Salvar</string>
+    <string name="valor">Valor</string>
+    <string name="data">Data</string>
+    <string name="descricao">Descrição</string>
+    <string name="local">Local</string>
+    <string name="categoria">Categoria</string>
+    <string name="imagem">Imagem</string>
+    <string name="editar">Editar</string>
+    <string name="gastos_realizados">Gastos Realizados</string>
+    <string name="remover">Remover</string>
+    <string name="opcoes">Opções</string>
+    <string name="confirmacao_exclusao">Você deseja realmente excluir?</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
+    <string name="modo_viagem">Modo Viagem</string>
+    <string name="modo_viagem_sumario">Determina a viagem ativa com base na data atual</string>
+    <string name="informe_valor_limite">Informe o valor limite</string>
+    <string name="valor_limite_sumario">Notifica quando os gastos ultrapassarem o percentual informado</string>
+    <string name="valor_limite">Valor Limite</string>
+    <string name="cadastro_sucesso">Salvo com sucesso</string>
+    <string name="cadastro_erro">Erro ao salvar registro</string>
+    <string-array name="categoria_gasto">
+        <item>Alimentação</item>
+        <item>Combustível</item>
+        <item>Transporte</item>
+        <item>Hospedagem</item>
+        <item>Outros</item>
+    </string-array>
+</resources>
