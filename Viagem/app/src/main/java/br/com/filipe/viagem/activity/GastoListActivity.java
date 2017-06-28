@@ -20,6 +20,7 @@ import java.util.Map;
 import br.com.filipe.viagem.R;
 import br.com.filipe.viagem.dao.GastoDAO;
 import br.com.filipe.viagem.dao.IDAO;
+import br.com.filipe.viagem.dao.IGastoDAO;
 import br.com.filipe.viagem.entity.Gasto;
 
 /**
@@ -32,7 +33,8 @@ public class GastoListActivity extends ListActivity {
     private AlertDialog menu;
     private AlertDialog caixaConfirmacao;
     private int gastoSelecionado;
-    private IDAO<Gasto> dao;
+    private IGastoDAO dao;
+    private Integer fkViagem;
 
     private String dataAnterior = "";
 
@@ -47,6 +49,8 @@ public class GastoListActivity extends ListActivity {
                     menu.show();
                 }
             };
+
+    public static final String EXTRA_ID_VIAGEM = "id_viagem";
 
     private DialogInterface.OnClickListener listenerMenu =
             new DialogInterface.OnClickListener() {
@@ -83,6 +87,9 @@ public class GastoListActivity extends ListActivity {
         dao = new GastoDAO(getApplicationContext());
         ListView listView = getListView();
 
+        Intent intent = getIntent();
+        fkViagem = intent.getIntExtra(EXTRA_ID_VIAGEM, 0);
+
         gastos = listarGastos();
         String[] de = {"data", "descricao", "valor", "categoria"};
         int[] para = {R.id.iddata, R.id.iddescricao,
@@ -107,7 +114,7 @@ public class GastoListActivity extends ListActivity {
 
         List<Map<String, Object>> gastos =
                 new ArrayList<Map<String, Object>>();
-        List<Gasto> listaGasto = dao.listar();
+        List<Gasto> listaGasto = dao.listar(fkViagem);
 
         for(Gasto g: listaGasto) {
             Map<String, Object> item =

@@ -38,6 +38,8 @@
     <string name="valor_limite">Valor Limite</string>
     <string name="cadastro_sucesso">Salvo com sucesso</string>
     <string name="cadastro_erro">Erro ao salvar registro</string>
+    <string name="erro_excluir">Erro ao excluir</string>
+    <string name="excluido_sucesso">Excluído com sucesso</string>
     <string-array name="categoria_gasto">
         <item>Alimentação</item>
         <item>Combustível</item>

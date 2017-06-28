@@ -18,7 +18,7 @@ import br.com.filipe.viagem.util.DatabaseHelper;
  * Created by filipe on 14/06/17.
  */
 
-public class GastoDAO implements IDAO<Gasto> {
+public class GastoDAO implements IGastoDAO {
 
     private SQLiteOpenHelper db;
 
@@ -92,6 +92,34 @@ public class GastoDAO implements IDAO<Gasto> {
         String sql = "SELECT _id, categoria, valor, data, descricao, local, fk_viagem FROM "+ NOME_TABELA;
 
         Cursor cursor = banco.rawQuery(sql, null);
+
+        //cursor.moveToFirst();
+
+        while(cursor.moveToNext()){
+            Gasto g = new Gasto();
+            g.setId(cursor.getInt(cursor.getColumnIndex("_id")));
+            g.setCategoria(cursor.getString(cursor.getColumnIndex("categoria")));
+            g.setValor(cursor.getDouble(cursor.getColumnIndex("valor")));
+            g.setData(cursor.getString(cursor.getColumnIndex("data")));
+            g.setDescricao(cursor.getString(cursor.getColumnIndex("descricao")));
+            g.setLocal(cursor.getString(cursor.getColumnIndex("local")));
+            g.setFkViagem(cursor.getInt(cursor.getColumnIndex("fk_viagem")));
+            retorno.add(g);
+        }
+        cursor.close();
+
+        return retorno;
+    }
+
+    @Override
+    public List<Gasto> listar(Integer fkViagem) {
+        List<Gasto> retorno = new ArrayList<Gasto>();
+
+        SQLiteDatabase banco = db.getReadableDatabase();
+        String sql = "SELECT _id, categoria, valor, data, descricao, local, fk_viagem FROM "+ NOME_TABELA+ " WHERE fk_viagem = ?";
+
+        String idString = String.valueOf(fkViagem);
+        Cursor cursor = banco.rawQuery(sql, new String[]{idString});
 
         //cursor.moveToFirst();
 

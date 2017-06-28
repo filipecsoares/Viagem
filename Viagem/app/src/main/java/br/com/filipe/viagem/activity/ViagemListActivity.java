@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +23,7 @@ import br.com.filipe.viagem.dao.ViagemDAO;
 import br.com.filipe.viagem.entity.Viagem;
 
 /**
- * Created by rafael on 10/05/17.
+ * Created by filipe on 10/05/17.
  */
 
 public class ViagemListActivity extends ListActivity {
@@ -51,18 +52,27 @@ public class ViagemListActivity extends ListActivity {
                 @Override
                 public void onClick(DialogInterface dialogInterface,
                         int item) {
+                    Integer idViagem = (Integer) viagens.get(viagemSelecionada).
+                            get("_id");
+                    Intent intent;
                     switch (item){
                         case 0:
-                            startActivity(
-                                    new Intent(getApplicationContext(),
-                                        NovaViagemActivity.class));
+                            intent = new Intent(getApplicationContext(),
+                                    NovaViagemActivity.class);
+                            intent.putExtra(NovaViagemActivity.EXTRA_ID_VIAGEM, idViagem);
+                            startActivity(intent);
                             break;
                         case 1:
-                            startActivity(
-                                    new Intent(getApplicationContext(),
-                                            NovoGastoActivity.class));
+                            intent = new Intent(getApplicationContext(),
+                                    NovoGastoActivity.class);
+                            intent.putExtra(NovoGastoActivity.EXTRA_ID_VIAGEM, idViagem);
+                            startActivity(intent);
                             break;
                         case 2:
+                            intent = new Intent(getApplicationContext(),
+                                    GastoListActivity.class);
+                            intent.putExtra(GastoListActivity.EXTRA_ID_VIAGEM, idViagem);
+                            startActivity(intent);
                             startActivity(
                                     new Intent(getApplicationContext(),
                                             GastoListActivity.class));
@@ -71,7 +81,13 @@ public class ViagemListActivity extends ListActivity {
                             caixaConfirmacao.show();
                             break;
                         case DialogInterface.BUTTON_POSITIVE:
-                            viagens.remove(viagemSelecionada);
+                            boolean result = dao.excluir(idViagem);
+                            if(result) {
+                                viagens.remove(viagemSelecionada);
+                                Toast.makeText(getApplicationContext(), getString(R.string.excluido_sucesso), Toast.LENGTH_LONG).show();
+                            }else{
+                                Toast.makeText(getApplicationContext(), getString(R.string.erro_excluir), Toast.LENGTH_LONG).show();
+                            }
                             getListView().invalidateViews();
                             break;
                         case DialogInterface.BUTTON_NEGATIVE:

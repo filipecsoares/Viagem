@@ -14,6 +14,9 @@ import android.widget.Spinner;
 import java.util.Calendar;
 
 import br.com.filipe.viagem.R;
+import br.com.filipe.viagem.dao.GastoDAO;
+import br.com.filipe.viagem.dao.IGastoDAO;
+import br.com.filipe.viagem.entity.Gasto;
 
 /**
  * Created by filipe on 04/05/17.
@@ -35,11 +38,17 @@ public class NovoGastoActivity extends Activity {
                     dataGasto.setText(dia+"/"+(mes+1)+"/"+ano);
                 }
             };
+    private Integer fkViagem;
+    private IGastoDAO dao;
+
+    public static final String EXTRA_ID_VIAGEM = "id_viagem";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_novogasto);
+
+        dao = new GastoDAO(getApplicationContext());
 
         Calendar cal = Calendar.getInstance();
         ano = cal.get(Calendar.YEAR);
@@ -69,5 +78,12 @@ public class NovoGastoActivity extends Activity {
                     ano, mes, dia);
         }
         return null;
+    }
+
+    public void registrarGasto(View view) {
+        Gasto g = new Gasto();
+        g.setFkViagem(fkViagem);
+
+        dao.salvar(g);
     }
 }
